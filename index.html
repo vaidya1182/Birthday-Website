@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Meri Jaan! ❤️🎂✨</title>
+
+  <!-- Google Fonts: Editorial Serif, Ultra-Clean Modern Sans, and Handwritten Accent -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=Caveat:wght@600;700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="colorful-theme theme-aurora">
+  <!-- ========================================================
+       SURPRISE UNBOXING OVERLAY (First Screen She Sees!)
+       ======================================================== -->
+  <div id="surprise-overlay" class="surprise-overlay" aria-label="Birthday surprise gift box">
+    <div class="surprise-content">
+      <div class="gift-box-wrap" id="gift-box" role="button" tabindex="0"
+        aria-label="Tap to open your birthday surprise">
+        <div class="gift-lid">
+          <div class="ribbon-bow">🎀</div>
+        </div>
+        <div class="gift-body">
+          <div class="gift-ribbon-vertical"></div>
+          <div class="gift-ribbon-horizontal"></div>
+          <div class="gift-glow"></div>
+        </div>
+      </div>
+      <p class="surprise-prompt">
+        A special surprise from your favourite boy... ✨
+      </p>
+      <button id="open-gift-btn" class="open-surprise-btn">
+        <span>🎁 Tap To Open Your Surprise</span>
+      </button>
+      <span class="headphones-hint">🎧 Put on your headphones for the best feeling</span>
+    </div>
+  </div>
+
+  <!-- Background Interactive Sparkle Canvas & Animated Blobs -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <div class="color-blob blob-1" aria-hidden="true"></div>
+  <div class="color-blob blob-2" aria-hidden="true"></div>
+  <div class="color-blob blob-3" aria-hidden="true"></div>
+
+  <!-- Floating Audio, Confetti & Theme Controls -->
+  <div class="floating-magic-bar">
+    <button id="theme-toggle-btn" class="magic-pill-btn" title="Switch Theme (Pink & Sky / Rose Pink / Sky Blue)">
+      <span class="icon">🎨</span>
+      <span class="text" id="theme-label">💖 Pink & Sky</span>
+    </button>
+    <button id="confetti-cannon-btn" class="magic-pill-btn" title="Blast Confetti!">
+      <span class="icon">🎉</span>
+      <span class="text">Congrats!</span>
+    </button>
+    <button id="ambient-sound-btn" class="magic-pill-btn" title="Toggle Romantic Melodies">
+      <span class="icon">🎵</span>
+      <span class="text" id="sound-label">BGM: Off</span>
+      <span class="pulse-indicator" id="sound-indicator"></span>
+    </button>
+  </div>
+
+  <!-- Romantic Background Music Audio Element -->
+  <audio id="bgm-audio" loop preload="auto">
+    <source src="bgm.mp3" type="audio/mpeg" />
+    <source src="https://assets.mixkit.co/music/493/493.mp3" type="audio/mpeg" />
+  </audio>
+
+  <main class="page-container" id="main-content">
+    <!-- ========================================================
+         1. HERO SECTION (Vibrant, Colorful, Eye-Popping)
+         ======================================================== -->
+    <header class="hero-section">
+      <div class="floating-balloons-bg" aria-hidden="true">
+        <span class="balloon b1">🎈</span>
+        <span class="balloon b2">💖</span>
+        <span class="balloon b3">🩵</span>
+        <span class="balloon b4">✨</span>
+        <span class="balloon b5">🌸</span>
+      </div>
+
+      <div class="hero-badge animate-bounce">
+        <span class="badge-sparkle">✨</span>
+        <span>Happy Birthday🎂 to the Prettiest Girl in the World</span>
+        <span class="badge-sparkle">✨</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="gradient-text" id="typing-text"></span><span class="typing-cursor">|</span>
+      </h1>
+
+      <p id="hero-subtitle" class="hero-subtitle">
+        Distance ka matlab hai ki aaj hum same room mein nahi ho sakte, but
+        koi bhi doori mujhe us din ko celebrate karne se stop nahi kar sakti
+        jab mera favourite person is world mein aaya.💖
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="#cake-section" class="cta-btn primary-gradient-btn">🎂 Cut Your Birthday Cake</a>
+        <a href="#voice-section" class="cta-btn glass-btn">🎙️ Hear My Voice Note</a>
+        <a href="#story-section" class="cta-btn glass-btn">📖 Our Story</a>
+      </div>
+    </header>
+
+    <!-- ========================================================
+         2. INTERACTIVE 3D BIRTHDAY CAKE & MAKE A WISH
+         ======================================================== -->
+    <section id="cake-section" class="section cake-section">
+      <div class="section-tag">Make A Wish, Birthday Girl!</div>
+      <h2 class="section-heading">Chalo Candles Bujhao</h2>
+      <p class="section-sub">
+        Apni aankhein close karo, apni sabse badi wish maango, aur candles
+        bujhane ke liye niche tap karo!
+      </p>
+
+      <div class="cake-stage">
+        <div class="cake-illustration" id="interactive-cake">
+          <!-- Sparkler Candles -->
+          <div class="candles-container">
+            <div class="candle" id="candle-1">
+              <div class="sparkler-sparks"></div>
+              <div class="flame"></div>
+              <div class="smoke"></div>
+              <div class="stick"></div>
+            </div>
+            <div class="candle" id="candle-2">
+              <div class="sparkler-sparks"></div>
+              <div class="flame"></div>
+              <div class="smoke"></div>
+              <div class="stick"></div>
+            </div>
+            <div class="candle" id="candle-3">
+              <div class="sparkler-sparks"></div>
+              <div class="flame"></div>
+              <div class="smoke"></div>
+              <div class="stick"></div>
+            </div>
+          </div>
+
+          <!-- Cake Layers with Colorful Frosting -->
+          <div class="cake-top-tier">
+            <div class="frosting-strawberries">🍓 🍫 🍓</div>
+            <div class="frosting-drips"></div>
+          </div>
+          <div class="cake-bottom-tier">
+            <div class="cake-piping"></div>
+            <span class="cake-banner">HAPPY BIRTHDAY JAAN💖</span>
+          </div>
+          <div class="cake-golden-plate"></div>
+        </div>
+
+        <button id="blow-candles-btn" class="cake-btn primary-gradient-btn">
+          <span>💨 Candles bujhane ke liye: CLICK HERE</span>
+        </button>
+
+        <div class="wish-reveal-card" id="wish-reveal">
+          <div class="wish-emojis">🎉 🎂 🥳 💖 🌟</div>
+          <h3 class="wish-title">May All Your Dreams Come True!</h3>
+          <p class="wish-message">
+            Main nahi jaanta aapne kya wish manga, but main poore dil se pray
+            karta hoon ki life mein apko endless hasi, peace, aur wo sab kuch
+            mile jo aap desire karti ho. Aap hamesha mujhe apne paas paogi,
+            apko love aur support karne ke liye.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         3. VOICE NOTE PLAYER WITH RAINBOW WAVEFORM
+         ======================================================== -->
+    <section id="voice-section" class="section voice-section">
+      <div class="section-tag">A Message from the core of My Heart</div>
+      <h2 class="section-heading">Play To Hear My Voice</h2>
+      <p class="section-sub">
+        Put on your earphones, close your eyes, and listen to this voice note.
+      </p>
+
+      <div class="rainbow-audio-card">
+        <div class="audio-card-header">
+          <div class="avatar-disc">
+            <span>🎙️</span>
+          </div>
+          <div class="audio-details">
+            <h3 class="audio-title">Birthday Note For My Girl</h3>
+            <p class="audio-subtitle">
+              Ek pyara Birthday wish apke liye with all my heart
+            </p>
+          </div>
+          <div class="animated-bars" id="waveform-bars">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <!-- Real-time Rainbow Canvas Visualizer -->
+        <div class="visualizer-box">
+          <canvas id="audio-visualizer-canvas" height="65"></canvas>
+        </div>
+
+        <div class="player-controls">
+          <button id="play-btn" class="play-btn" aria-label="Play voice note">
+            <svg id="play-icon" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <svg id="pause-icon" class="hidden" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="6" y="4" width="4" height="16"></rect>
+              <rect x="14" y="4" width="4" height="16"></rect>
+            </svg>
+          </button>
+
+          <div class="scrubber-box">
+            <div class="scrubber-track" id="progress-container">
+              <div class="scrubber-fill" id="progress-bar">
+                <span class="scrubber-knob"></span>
+              </div>
+            </div>
+            <div class="time-display">
+              <span id="current-time">0:00</span>
+              <span id="duration">0:42</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUDIO PLACEHOLDER: Put your real audio file as audio.mpeg in the project folder -->
+        <audio id="voice-audio" src="audio.mpeg" preload="metadata"></audio>
+
+        <p class="audio-hint">
+          💡 <em>Tip: Tap play to hear the message.</em>
+        </p>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         4. OUR STORY (Colorful Bento Milestone Cards)
+         ======================================================== -->
+    <section id="story-section" class="section story-section">
+      <div class="section-tag">How It All Began</div>
+      <h2 class="section-heading">Our Story So Far</h2>
+      <p class="section-sub">
+        Every single day spent knowing you has been my favorite chapter.
+      </p>
+
+      <div class="bento-grid">
+        <!-- Card 1 -->
+        <div class="bento-card card-gradient-1">
+          <span class="bento-icon">💌</span>
+          <span class="bento-badge">Day 01</span>
+          <h3 class="bento-title">The First "Hello"</h3>
+          <p class="bento-desc">
+            Hum anjane mein strangers ki tarah mile the, par bahut jaldi aap
+            mere phone ki wo eklauti notification ban gayi jiska main poore
+            din besabri se wait karta tha aur karta hoon.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bento-card card-gradient-2">
+          <span class="bento-icon">📞</span>
+          <span class="bento-badge">Late Nights</span>
+          <h3 class="bento-title">The Phone Calls</h3>
+          <p class="bento-desc">
+            Tab tak baatein karna jab tak phone discharge na ho jaye, puri
+            raat chori-chupke mute VC aur text pr baat krna taaki koi dekh na
+            le, aur ye realize karna ki apse baat karne ke sukoon ke aage
+            neend kuch bhi nahi hai.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bento-card card-gradient-3">
+          <span class="bento-icon">💘</span>
+          <span class="bento-badge">The Moment</span>
+          <h3 class="bento-title">
+            Wo moment jab mujhe realize hua ki aap hi 'the one' ho.
+          </h3>
+          <p class="bento-desc">
+            Ye koi ek bada cinematic scene nahi tha. Ye choti-choti baatein
+            thi: jaise apka poochna ki maine khana khaya ya nahi, mere liye
+            apka care, meri har demand ko jaise-taise poora krna, aur kaise
+            apki aawaz mein mujhe ghar jaisa sukoon milne laga aur is tarah se
+            aap meri apni ban gyi.
+          </p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="bento-card card-gradient-4">
+          <span class="bento-icon">✈️</span>
+          <span class="bento-badge">Always & Forever</span>
+          <h3 class="bento-title">Distance Can't Beat Us</h3>
+          <p class="bento-desc">
+            Abhi ham situation ki wajah se door jarur hain. But hamare beech
+            jo bond hai wo ekdum real, majboot aur kabhi na tootne wala hai.
+            Main aaj, kal, aur har janam mein sirf apko hi choose karunga.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         5. THINGS I SILENTLY ADORE ABOUT YOU (Random Generator)
+         ======================================================== -->
+    <section class="section reasons-section">
+      <div class="section-tag">Honest Truth</div>
+      <h2 class="section-heading">Why You Are My Favorite Person</h2>
+      <p class="section-sub">
+        Niche tap karke reveal karo un choti-choti baaton ko, jinki wajah se
+        main aapke pyaar mein baar-baar padh jata hoon.
+      </p>
+
+      <div class="glowing-reasons-card">
+        <div class="quote-spark">“</div>
+        <p id="appreciation-text" class="quote-text">
+          Click the button below: ye janne ke liye ki aap mere liye kitni
+          special ho aur main apko kitna like karta hoon
+        </p>
+        <span id="appreciation-counter" class="quote-counter">Reason #1 of 12</span>
+
+        <div class="reason-button-row">
+          <button id="reason-btn" class="cake-btn primary-gradient-btn">
+            <span>✨ Tell Me Another Reason</span>
+          </button>
+          <button id="copy-quote-btn" class="copy-btn" title="Copy to clipboard" aria-label="Copy quote">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
+            <span class="copied-toast" id="copied-tooltip">Copied!</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         6. 'HAMARI LIFE KE ALAG-ALAG PAL' (PORTRAIT VIDEO CARDS)
+         ======================================================== -->
+    <section class="section envelopes-section">
+      <div class="section-tag">Hamari Yaadein & Lamhe</div>
+      <h2 class="section-heading">Hamari Life ke alag-alag Pal</h2>
+      <p class="section-sub">
+        Har ek envelope mein hamari life ka ek special pal aur uski video chhupi hai. Kisi bhi card ko tap karke us khubsurat pal ko relive karo! ✨
+      </p>
+
+      <div class="envelope-instruction-banner">
+        <span>💌</span>
+        <span>Tap any card to open & watch the video</span>
+      </div>
+
+      <div class="colorful-envelopes-grid">
+        <!-- Card 1: Pink Rose -->
+        <div class="flip-envelope-card env-pink" tabindex="0" role="button" aria-expanded="false" data-card-id="1">
+          <div class="flip-inner">
+            <!-- Front side of the envelope -->
+            <div class="flip-front">
+              <div class="envelope-top-bar">
+                <span class="envelope-badge">🌸 Pal 01</span>
+                <div class="postage-stamp">
+                  <span class="stamp-inner">PEHLI MULAKAAT ✨</span>
+                </div>
+              </div>
+
+              <div class="wax-seal">
+                <div class="seal-circle">
+                  <span class="seal-icon">🌸</span>
+                </div>
+              </div>
+
+              <div class="envelope-front-body">
+                <h3 class="envelope-title">
+                  Jab Hum Pehli Baar Mile The
+                </h3>
+                <p class="envelope-subtitle">
+                  Wo anjaani shuruat jo meri zindagi ki sabse khoobsurat kahani ban gayi
+                </p>
+              </div>
+
+              <div class="open-action-btn">
+                <span>✉️ Tap to Relive & Watch</span>
+              </div>
+            </div>
+
+            <!-- Back side of the envelope (Full Cover Portrait Video) -->
+            <div class="flip-back">
+              <div class="video-card-top-overlay">
+                <span class="back-badge">🌸 Pal 01</span>
+                <button class="card-close-btn" type="button" aria-label="Fold back letter">✕ Fold Back</button>
+              </div>
+
+              <!-- Portrait Video Covering Whole Card -->
+              <!-- REPLACE INSTRUCTION: Replace "videos/open-when-1.mp4" below with your portrait video file path -->
+              <video
+                class="card-portrait-video"
+                controls
+                playsinline
+                preload="metadata"
+                title="Jab Hum Pehli Baar Mile The"
+              >
+                <!-- Primary local portrait video -->
+                <source src="videos/open-when-1.mp4" type="video/mp4" />
+                <!-- Cloud fallback demo video -->
+                <source src="https://assets.mixkit.co/videos/1170/1170-360.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <button class="video-play-overlay-btn" type="button" aria-label="Play video">
+                <span class="play-triangle">▶</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Royal Purple -->
+        <div class="flip-envelope-card env-purple" tabindex="0" role="button" aria-expanded="false" data-card-id="2">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="envelope-top-bar">
+                <span class="envelope-badge">🌙 Pal 02</span>
+                <div class="postage-stamp">
+                  <span class="stamp-inner">LATE NIGHT CALLS 🕊️</span>
+                </div>
+              </div>
+
+              <div class="wax-seal">
+                <div class="seal-circle">
+                  <span class="seal-icon">🌙</span>
+                </div>
+              </div>
+
+              <div class="envelope-front-body">
+                <h3 class="envelope-title">
+                  Der Raat Tak Hamari Baatein
+                </h3>
+                <p class="envelope-subtitle">
+                  Neend bhula kar subah tak phone par bina thake muskurana aur hasna
+                </p>
+              </div>
+
+              <div class="open-action-btn">
+                <span>✉️ Tap to Relive & Watch</span>
+              </div>
+            </div>
+
+            <!-- Back side of the envelope (Full Cover Portrait Video) -->
+            <div class="flip-back">
+              <div class="video-card-top-overlay">
+                <span class="back-badge">🌙 Pal 02</span>
+                <button class="card-close-btn" type="button" aria-label="Fold back letter">✕ Fold Back</button>
+              </div>
+
+              <!-- Portrait Video Covering Whole Card -->
+              <!-- REPLACE INSTRUCTION: Replace "videos/open-when-2.mp4" below with your portrait video file path -->
+              <video
+                class="card-portrait-video"
+                controls
+                playsinline
+                preload="metadata"
+                title="Der Raat Tak Hamari Baatein"
+              >
+                <source src="videos/open-when-2.mp4" type="video/mp4" />
+                <source src="https://assets.mixkit.co/videos/1197/1197-360.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <button class="video-play-overlay-btn" type="button" aria-label="Play video">
+                <span class="play-triangle">▶</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Sunset Coral -->
+        <div class="flip-envelope-card env-coral" tabindex="0" role="button" aria-expanded="false" data-card-id="3">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="envelope-top-bar">
+                <span class="envelope-badge">✈️ Pal 03</span>
+                <div class="postage-stamp">
+                  <span class="stamp-inner">DIL KE PAAS 💫</span>
+                </div>
+              </div>
+
+              <div class="wax-seal">
+                <div class="seal-circle">
+                  <span class="seal-icon">✈️</span>
+                </div>
+              </div>
+
+              <div class="envelope-front-body">
+                <h3 class="envelope-title">
+                  Door Rehkar Bhi Saath Ka Ehsaas
+                </h3>
+                <p class="envelope-subtitle">
+                  Kyunki sachha pyaar faasle nahi, dilon ka gehra connection dekhta hai
+                </p>
+              </div>
+
+              <div class="open-action-btn">
+                <span>✉️ Tap to Relive & Watch</span>
+              </div>
+            </div>
+
+            <!-- Back side of the envelope (Full Cover Portrait Video) -->
+            <div class="flip-back">
+              <div class="video-card-top-overlay">
+                <span class="back-badge">✈️ Pal 03</span>
+                <button class="card-close-btn" type="button" aria-label="Fold back letter">✕ Fold Back</button>
+              </div>
+
+              <!-- Portrait Video Covering Whole Card -->
+              <!-- REPLACE INSTRUCTION: Replace "videos/open-when-3.mp4" below with your portrait video file path -->
+              <video
+                class="card-portrait-video"
+                controls
+                playsinline
+                preload="metadata"
+                title="Door Rehkar Bhi Saath Ka Ehsaas"
+              >
+                <source src="videos/open-when-3.mp4" type="video/mp4" />
+                <source src="https://assets.mixkit.co/videos/1214/1214-360.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <button class="video-play-overlay-btn" type="button" aria-label="Play video">
+                <span class="play-triangle">▶</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Golden Sunrise -->
+        <div class="flip-envelope-card env-gold" tabindex="0" role="button" aria-expanded="false" data-card-id="4">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="envelope-top-bar">
+                <span class="envelope-badge">✨ Pal 04</span>
+                <div class="postage-stamp">
+                  <span class="stamp-inner">FOREVER & ALWAYS 🌟</span>
+                </div>
+              </div>
+
+              <div class="wax-seal">
+                <div class="seal-circle">
+                  <span class="seal-icon">☀️</span>
+                </div>
+              </div>
+
+              <div class="envelope-front-body">
+                <h3 class="envelope-title">
+                  Jab Realize Hua Aap Hi 'The One' Ho
+                </h3>
+                <p class="envelope-subtitle">
+                  Meri har khushi, har muskurahat aur har dua sirf aap tak hi aati hai
+                </p>
+              </div>
+
+              <div class="open-action-btn">
+                <span>✉️ Tap to Relive & Watch</span>
+              </div>
+            </div>
+
+            <!-- Back side of the envelope (Full Cover Portrait Video) -->
+            <div class="flip-back">
+              <div class="video-card-top-overlay">
+                <span class="back-badge">✨ Pal 04</span>
+                <button class="card-close-btn" type="button" aria-label="Fold back letter">✕ Fold Back</button>
+              </div>
+
+              <!-- Portrait Video Covering Whole Card -->
+              <!-- REPLACE INSTRUCTION: Replace "videos/open-when-4.mp4" below with your portrait video file path -->
+              <video
+                class="card-portrait-video"
+                controls
+                playsinline
+                preload="metadata"
+                title="Jab Realize Hua Aap Hi The One Ho"
+              >
+                <source src="videos/open-when-4.mp4" type="video/mp4" />
+                <source src="https://assets.mixkit.co/videos/51500/51500-360.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <button class="video-play-overlay-btn" type="button" aria-label="Play video">
+                <span class="play-triangle">▶</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         7. POLAROID MEMORY WALL & CINEMA LIGHTBOX
+         ======================================================== -->
+    <section class="section gallery-section">
+      <div class="section-tag">Priceless Memories</div>
+      <h2 class="section-heading">The stars of our memories</h2>
+      <p class="section-sub">
+        Tap any photo to view in high resolution!
+      </p>
+
+      <div class="polaroid-grid">
+        <figure class="polaroid-frame pol-1" data-index="0">
+          <div class="photo-img-wrap">
+            <img src="images/img-1.jpeg"
+              alt="Memory 1: Beautiful sunset" loading="lazy" />
+          </div>
+          <div class="polaroid-date-badge">
+            <span class="pol-date">26 December 2024</span>
+          </div>
+        </figure>
+
+        <figure class="polaroid-frame pol-2" data-index="1">
+          <div class="photo-img-wrap">
+            <img src="images/img-2.jpeg"
+              alt="Memory 2: Laughing candid" loading="lazy" />
+          </div>
+          <div class="polaroid-date-badge">
+            <span class="pol-date">11 April 2025</span>
+          </div>
+        </figure>
+
+        <figure class="polaroid-frame pol-3" data-index="2">
+          <div class="photo-img-wrap">
+            <img src="images/img-3.jpeg"
+              alt="Memory 3: Sunset together" loading="lazy" />
+          </div>
+          <div class="polaroid-date-badge">
+            <span class="pol-date">30 April 2025</span>
+          </div>
+        </figure>
+
+        <figure class="polaroid-frame pol-4" data-index="3">
+          <div class="photo-img-wrap">
+            <img src="images/img-4.jpeg"
+              alt="Memory 4: Winter starlight" loading="lazy" />
+          </div>
+          <div class="polaroid-date-badge">
+            <span class="pol-date">29 July 2025</span>
+          </div>
+        </figure>
+
+        <figure class="polaroid-frame pol-5" data-index="4">
+          <div class="photo-img-wrap">
+            <img src="images/img-5.jpeg"
+              alt="Memory 5: Coffee and talks" loading="lazy" />
+          </div>
+          <div class="polaroid-date-badge">
+            <span class="pol-date">18 February 2026</span>
+          </div>
+        </figure>
+
+        <figure class="polaroid-frame pol-6" data-index="5">
+          <div class="photo-img-wrap">
+            <img src="images/img-6.jpeg"
+              alt="Memory 6: Today and forever" loading="lazy" />
+          </div>
+          <div class="polaroid-date-badge">
+            <span class="pol-date">05 July 2026</span>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         8. A HEARTFELT LETTER TO MY GIRL
+         ======================================================== -->
+    <section class="section letter-section">
+      <div class="section-tag">Direct From The Heart</div>
+      <h2 class="section-heading">A Letter To My Girl</h2>
+
+      <div class="glowing-letter-box">
+        <div class="letter-paper">
+          <div class="letter-badge">FOR YOUR EYES ONLY 💌</div>
+          <h3 class="letter-dear">Meri Pyaari Jaan,</h3>
+          <p class="letter-p">
+            Happy Birthday, my love. Mera itna zyada mann kar raha hai ki kaash aaj main apke bilkul saamne khada hota, apko bahar le jata, apko hasata, aur ek lamba sa, sabse warm hug deta.
+          </p>
+          <p class="letter-p">
+            Ek doosre se door rehna aasan nahi hai. Kuch din aise hote hain jab apki itni yaad aati hai ki sach mein dard feel hota hai. Par har ek challenge worth it hai kyunki ye apke saath hai. Aapko pyaar karna meri life ki sabse aasan aur natural cheez ban gyi hai apki wajah se.
+          </p>
+          <p class="letter-p">
+            Mera itna patient partner, mera sabse bada support system, aur har raat baat karne ke liye mera favorite person banne ke liye thank you. Main promise karta hoon ki main hamesha apko choose karunga, apki smile ko hamesha safe rakhunga, aur life mein chahe jo bhi aaye, hamesha apke saath khada rahunga.
+          </p>
+          </p>
+          <p class="letter-signature">
+            Yours always & completely,<br />
+            <span>Forever & Always ❤️</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         9. INTERACTIVE "SEND A VIRTUAL HUG"
+         ======================================================== -->
+    <section class="section hug-section">
+      <div class="section-tag">Distance Collapses Here</div>
+      <h2 class="section-heading">Send A Virtual Hug</h2>
+      <p class="section-sub">
+        Press and hold the heart to charge warmth and send your hug across the long distance!
+      </p>
+
+      <div class="hug-module">
+        <div class="hug-ring-wrap">
+          <svg class="ring-svg" width="160" height="160" viewBox="0 0 160 160">
+            <circle class="ring-track" cx="80" cy="80" r="72" />
+            <circle class="ring-indicator" id="hug-progress" cx="80" cy="80" r="72" />
+          </svg>
+          <button id="hug-btn" class="heart-pulse-btn" aria-label="Hold to send hug">
+            <span class="heart-emoji">💖</span>
+          </button>
+        </div>
+
+        <p class="hug-hint" id="hug-instruction">Press & hold the heart</p>
+        <div class="hug-success-msg" id="hug-message">
+          Hug Sent! Wrapped in my arms across the long distance ✨
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         10. SEND A WHISPER BACK (Direct WhatsApp Messenger)
+         ======================================================== -->
+    <section class="section whisper-section">
+      <div class="whisper-card">
+        <span class="whisper-tag">💌 Leave A Birthday Note For Him</span>
+        <h3 class="whisper-headline">Tell Me Your Favorite Part</h3>
+        <p class="whisper-sub">
+          Type your reaction below to send directly to my WhatsApp!
+        </p>
+
+        <div class="whisper-bar">
+          <input type="text" id="whisper-input" placeholder="e.g. Loved the voice note, and letter so much! ❤️"
+            class="whisper-input" />
+          <button id="send-whisper-btn" class="cta-btn primary-gradient-btn">
+            <span>Send to Him (WhatsApp)</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13" />
+              <polygon points="22 2 15 22 11 13 2 9 22 2" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         FOOTER
+         ======================================================== -->
+    <footer class="page-footer">
+  <div class="footer-divider"></div>
+  <p class="footer-quote">
+    “Yeh dooriyan tab bahut choti lagti hain, jab aap mere liye sab kuch ho.”
+  </p>
+  <p class="footer-signoff">Happy Birthday, Mera Baccha❤️</p>
+  <p class="footer-credit">
+    💌Meri taraf se ye ek chota sa effort hai jisse apko khusi milegi Baby💌
+  </p>
+</footer>
+
+  <!-- ========================================================
+       MODAL: CINEMA LIGHTBOX FOR MEMORY PHOTOS
+       ======================================================== -->
+  <div id="lightbox-modal" class="lightbox-modal" aria-hidden="true" role="dialog">
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <div class="lightbox-container">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Close photo">
+        ✕
+      </button>
+      <button class="lightbox-nav-btn prev-btn" id="lightbox-prev" aria-label="Previous photo">
+        ‹
+      </button>
+      <button class="lightbox-nav-btn next-btn" id="lightbox-next" aria-label="Next photo">
+        ›
+      </button>
+
+      <div class="lightbox-img-wrap">
+        <img id="lightbox-img" src="" alt="Enlarged photo memory" />
+      </div>
+
+      <div class="lightbox-caption-area">
+        <span class="lightbox-date" id="lightbox-date"></span>
+        <p class="lightbox-text" id="lightbox-caption"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
