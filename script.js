@@ -505,61 +505,72 @@ document.addEventListener('DOMContentLoaded', () => {
      7. "WHY YOU ARE MY FAVORITE PERSON" GENERATOR
      ========================================================================== */
   const reasonsList = [
-    "Kyuki chahe main kahin bhi jaun ya hum kitne bhi door hon, aap hi mera ghar ho.",
-    "Apka woh unconditional loyalty, warmth, aur respect jo aap mujhe har ek din deti ho.",
-    "Jis tarah se aap is distance ko itna chota bana deti ho, jisse apko pyaar karna ekdum effortless lagta hai.",
-    "Yeh feel karna kitna comforting hai ki mera din chahe kitna bhi rough gaya ho, apka 'hello' sunte hi mera poora mood theek ho jata hai.",
-    "Main kitna proud feel karta hoon jab bhi main kisi se apke baare mein baat karta hoon.",
-    "Video calls par jab apko pata bhi nahi hota ki main apko ghoor raha hoon, tab apki aankhein kitni khoobsurat lagti hain.",
-    "Meri sabse boring baaton aur bewajah ki overthinking ko bhi itne dhyaan aur pyaar se sunna.",
-    "Jis tarah se aap mere sapnon par vishwas karti ho, un dino mein bhi jab main khud par doubt karne lagta hoon.",
-    "Jis tarah se aap apne poore din ki choti-choti baatein aur gossips itne excitement ke saath mujhe sunati ho.",
-    "Jis tarah se aap sach mein gussa ho jati ho jab bhi main khana khana bhool jata hoon.",
-    "Hamare woh silly inside jokes jo sirf aur sirf hum dono samajhte hain.",
-    "Jab main busy hota hoon tab apki ek saath reels bhejne ki aadat, aur yeh expect karna ki main har ek par reaction doon."
+  "Kyuki chahe main kahin bhi jaun ya hum kitne bhi door hon, aap hi mera ghar ho.",
+  "Apka woh unconditional loyalty, warmth, aur respect jo aap mujhe har ek din deti ho.",
+  "Jis tarah se aap is distance ko itna chota bana deti ho, jisse apko pyaar karna ekdum effortless lagta hai.",
+  "Yeh feel karna kitna comforting hai ki mera din chahe kitna bhi rough gaya ho, apka 'hello' sunte hi mera poora mood theek ho jata hai.",
+  "Main kitna proud feel karta hoon jab bhi main kisi se apke baare mein baat karta hoon.",
+  "Video calls par jab apko pata bhi nahi hota ki main apko ghoor raha hoon, tab apki aankhein kitni khoobsurat lagti hain.",
+  "Meri sabse boring baaton aur bewajah ki overthinking ko bhi itne dhyaan aur pyaar se sunna.",
+  "Jis tarah se aap mere sapnon par vishwas karti ho, un dino mein bhi jab main khud par doubt karne lagta hoon.",
+  "Jis tarah se aap apne poore din ki choti-choti baatein aur gossips itne excitement ke saath mujhe sunati ho.",
+  "Jis tarah se aap sach mein gussa ho jati ho jab bhi main khana khana bhool jata hoon.",
+  "Hamare woh silly inside jokes jo sirf aur sirf hum dono samajhte hain.",
+  "Jab main busy hota hoon tab apki ek saath reels bhejne ki aadat, aur yeh expect karna ki main har ek par reaction doon."
 ];
 
-  const reasonBtn = document.getElementById('reason-btn');
-  const appreciationText = document.getElementById('appreciation-text');
-  const appreciationCounter = document.getElementById('appreciation-counter');
-  const copyQuoteBtn = document.getElementById('copy-quote-btn');
-  const copiedTooltip = document.getElementById('copied-tooltip');
+const reasonBtn = document.getElementById('reason-btn');
+const appreciationText = document.getElementById('appreciation-text');
+const appreciationCounter = document.getElementById('appreciation-counter');
+const copyQuoteBtn = document.getElementById('copy-quote-btn');
+const copiedTooltip = document.getElementById('copied-tooltip');
 
-  let lastIndex = -1;
+// 1. Replaced the random lastIndex with a sequential currentIndex
+let currentIndex = 0;
 
-  function getRandomReason() {
-    let newIndex;
-    do {
-      newIndex = Math.floor(Math.random() * reasonsList.length);
-    } while (newIndex === lastIndex && reasonsList.length > 1);
-    lastIndex = newIndex;
-    return { text: reasonsList[newIndex], index: newIndex + 1 };
+// 2. Replaced getRandomReason with getNextReason
+function getNextReason() {
+  const text = reasonsList[currentIndex];
+  const index = currentIndex + 1; // This ensures the display says 1-12 instead of 0-11
+  
+  // Move to the next reason
+  currentIndex++;
+  
+  // If we just showed the last reason, reset the counter to start over at 1
+  if (currentIndex >= reasonsList.length) {
+    currentIndex = 0;
   }
+  
+  return { text, index };
+}
 
-  if (reasonBtn && appreciationText) {
-    reasonBtn.addEventListener('click', () => {
-      appreciationText.classList.add('fade-out');
-      setTimeout(() => {
-        const { text, index } = getRandomReason();
-        appreciationText.textContent = text;
-        if (appreciationCounter) {
-          appreciationCounter.textContent = `Reason #${index} of ${reasonsList.length}`;
-        }
-        appreciationText.classList.remove('fade-out');
-      }, 250);
+if (reasonBtn && appreciationText) {
+  reasonBtn.addEventListener('click', () => {
+    appreciationText.classList.add('fade-out');
+    setTimeout(() => {
+      // 3. Call the new sequential function here
+      const { text, index } = getNextReason();
+      
+      appreciationText.textContent = text;
+      if (appreciationCounter) {
+        // Added the sparkle emoji back in to match your design
+        appreciationCounter.textContent = `Reason #${index} of ${reasonsList.length}✨`;
+      }
+      appreciationText.classList.remove('fade-out');
+    }, 250);
+  });
+}
+
+if (copyQuoteBtn && appreciationText) {
+  copyQuoteBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(appreciationText.textContent.trim()).then(() => {
+      if (copiedTooltip) {
+        copiedTooltip.classList.add('show');
+        setTimeout(() => copiedTooltip.classList.remove('show'), 1800);
+      }
     });
-  }
-
-  if (copyQuoteBtn && appreciationText) {
-    copyQuoteBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(appreciationText.textContent.trim()).then(() => {
-        if (copiedTooltip) {
-          copiedTooltip.classList.add('show');
-          setTimeout(() => copiedTooltip.classList.remove('show'), 1800);
-        }
-      });
-    });
-  }
+  });
+}
 
 
   /* ==========================================================================
